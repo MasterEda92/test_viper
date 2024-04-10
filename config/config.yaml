@@ -2,21 +2,18 @@ paths:
   importPath: ./data_import/
   archivePath: ./data_import/archive/
   errorPath: ./data_import/error/
-
 scheduler:
   lookupInterval: 30
-
 logging:
   logFile: ./logs/file_reader.log
   logLevel: -4
   addSource: false
-
 database:
   host: localhost
   port: 5432
   user: admin
   password: admin123
   name: testdb
-
 source:
-  name: "HOST"
+  name: HOST
+test: Test

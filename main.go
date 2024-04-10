@@ -30,6 +30,9 @@ type Config struct {
 
 	// Source
 	SourceName string `mapstructure:"source.name"`
+
+	// Test
+	Test string `mapstructure:"test"`
 }
 
 // NewConfig creates a new config struct
@@ -39,8 +42,9 @@ func NewConfig() *Config {
 
 // SetupConfig reads the config file and sets up a watcher for changes
 func SetupConfig(conf *Config) error {
-	viper.SetConfigName("config")   // name of config file (without extension)
-	viper.SetConfigType("yaml")     // REQUIRED if the config file does not have the extension in the name
+	viper.SetConfigName("config") // name of config file (without extension)
+	viper.SetConfigType("yaml")   // REQUIRED if the config file does not have the extension in the name
+	//viper.SetConfigType("json")
 	viper.AddConfigPath("./config") // path to look for the config file in
 
 	err := viper.ReadInConfig() // Find and read the config file
@@ -50,6 +54,9 @@ func SetupConfig(conf *Config) error {
 
 	test := viper.GetString("paths.importPath")
 	fmt.Println("Value with viper.GetString: ", test)
+
+	test2 := viper.GetString("test")
+	fmt.Println("Value with viper.GetString: ", test2)
 
 	//viper.WatchConfig()
 
@@ -67,4 +74,5 @@ func main() {
 		panic(fmt.Errorf("unable to setup the configuration, %v", err))
 	}
 	fmt.Println("Value from unmarshaled config struct: ", conf.ImportPath)
+	fmt.Println("Value from unmarshaled config struct: ", conf.Test)
 }
